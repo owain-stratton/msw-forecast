@@ -66,7 +66,8 @@ gulp.task('scripts', ['jshint'], function() {
   })
   .transform(babelify, {
     presets: ['es2015']
-  });
+  })
+  .external(dependencies);
 
   return sources.bundle()
     .pipe(vinylSourceStream(out.scripts.file))
