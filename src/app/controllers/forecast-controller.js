@@ -7,5 +7,12 @@ export default class forecastCtrl {
       this.forecast = forecast.data[0];
     });
 
+    this.spots = [
+      {name: 'Noosa, Australia'},
+      {name: 'Rincon, United States'},
+      {name: 'Biarritz, France'}
+    ];
+
+
   }
 }

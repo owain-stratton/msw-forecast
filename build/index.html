@@ -16,12 +16,27 @@
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+	<link rel="stylesheet" href="styles/angular-material.css" />
 	<link rel="stylesheet" href="styles/app.css" />
 </head>
-<body ng-cloak ng-controller="forecastCtrl as ctrl">
+<body ng-cloak ng-controller="forecastCtrl as ctrl" layout="column">
 
-	<h2>Swell: {{ctrl.forecast.swell}}</h2>
+	<md-toolbar layout-align="center center">
+		<h1>Longboard Spots Surf Forecast</h1>
+	</md-toolbar>
+
+	<div class="container" layout="row" flex>
+		<md-sidenav class="sidenav md-whiteframe-4dp" md-is-locked-open="$mdMedia('min-width: 333px')">
+			<md-list-item ng-repeat="spot in ctrl.spots">
+				<md-button>
+					{{spot.name}}
+				</md-button>
+			</md-list-item>
+		</md-sidenav>
+		<md-content class="content" flex>Content</md-content>
+	</div>
 
 	<script src="libs/vendor.bundle.js"></script>
 	<script src="scripts/app.min.js"></script>

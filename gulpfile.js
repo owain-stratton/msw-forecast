@@ -18,7 +18,8 @@ var src = {
   },
   styles: {
     all: 'src/styles/*.scss',
-    main: 'src/styles/app.scss'
+    main: 'src/styles/app.scss',
+    material: 'node_modules/angular-material/angular-material.css'
   }
 };
 
@@ -93,6 +94,12 @@ gulp.task('compileSass', function() {
     .pipe(plugins.connect.reload());
 });
 
+gulp.task('copyMaterialCSS', function() {
+  return gulp.src(src.styles.material)
+    .pipe(gulp.dest(out.styles))
+    .pipe(plugins.connect.reload());
+});
+
 gulp.task('serve', ['build', 'watch'], function() {
   plugins.connect.server({
     root: build,
@@ -109,5 +116,5 @@ gulp.task('watch', function() {
   gulp.watch(src.styles.all, ['compileSass']);
 });
 
-gulp.task('build', ['scripts', 'html', 'vendors', 'compileSass']);
+gulp.task('build', ['scripts', 'html', 'vendors', 'compileSass', 'copyMaterialCSS']);
 gulp.task('default', ['serve']);
