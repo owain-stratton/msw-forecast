@@ -30,7 +30,7 @@
 	<div class="container" layout="row" flex>
 		<md-sidenav class="sidenav md-whiteframe-4dp" md-is-locked-open="$mdMedia('min-width: 333px')">
 			<md-list-item ng-repeat="spot in ctrl.spots">
-				<md-button>
+				<md-button ng-click="ctrl.fetchForecast(spot.id)">
 					{{spot.name}}
 				</md-button>
 			</md-list-item>

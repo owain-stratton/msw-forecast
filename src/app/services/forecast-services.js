@@ -5,8 +5,8 @@ export default class forecastService {
     this.$http = $http;
   }
 
-  getForecast() {
-    return this.$http.jsonp('http://magicseaweed.com/api/LPp8WbZceQ3ER64f90P1Au52I5IFo807/forecast/?spot_id=10&units=eu&callback=JSON_CALLBACK');
+  getForecast(spotID) {
+    return this.$http.jsonp('http://magicseaweed.com/api/LPp8WbZceQ3ER64f90P1Au52I5IFo807/forecast/?spot_id=' + spotID + '&units=eu&callback=JSON_CALLBACK');
   }
 
 }
