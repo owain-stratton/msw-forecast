@@ -15,6 +15,10 @@ var src = {
   scripts: {
     all: 'src/app/**/*.js',
     app: 'src/app/app.js'
+  },
+  styles: {
+    all: 'src/styles/*.scss',
+    main: 'src/styles/app.scss'
   }
 };
 
@@ -24,7 +28,8 @@ var out = {
   scripts: {
     file: 'app.min.js',
     folder: build + 'scripts/'
-  }
+  },
+  styles: build + 'styles/'
 };
 
 gulp.task('html', function() {
@@ -78,6 +83,15 @@ gulp.task('scripts', ['jshint'], function() {
     .pipe(plugins.connect.reload());
 });
 
+gulp.task('compileSass', function() {
+  return gulp.src(src.styles.main)
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.sass())
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(out.styles))
+    .pipe(plugins.connect.reload());
+});
+
 gulp.task('serve', ['build', 'watch'], function() {
   plugins.connect.server({
     root: build,
@@ -88,10 +102,11 @@ gulp.task('serve', ['build', 'watch'], function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch(src.libs, ['vendors']);
+	gulp.watch('package.json', ['vendors']);
 	gulp.watch(src.html, ['html']);
 	gulp.watch(src.scripts.all, ['scripts']);
+  gulp.watch(src.styles.all, ['compileSass']);
 });
 
-gulp.task('build', ['scripts', 'html', 'vendors']);
+gulp.task('build', ['scripts', 'html', 'vendors', 'compileSass']);
 gulp.task('default', ['serve']);

@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html ng-app="mswApp" ng-strict-di>
 <head>
-	<title>Angular ES6 Sample</title>
+	<title>MSW | Surf Forecast App</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="description" content="Check out the surf forecast coming form the MagicSeaweed API" />
+	<meta name="author" content="Owain Stratton" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+	<link rel="stylesheet" href="styles/app.css" />
 </head>
-<body ng-controller="HomeController as ctrl">
+<body ng-cloak>
 
-	Hello {{ ctrl.person.name | upper }}!
+	<input type="text" ng-model="name" />
+	<h1>Hello {{ name }}</h1>
 
-	<script src="libs/angular.min.js"></script>
+	<script src="libs/vendor.bundle.js"></script>
 	<script src="scripts/app.min.js"></script>
 </body>
 </html>
