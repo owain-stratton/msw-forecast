@@ -6,4 +6,11 @@ import forecastService from './services/forecast-services.js';
 
 angular.module('mswApp', [ ngMaterial ])
   .controller('forecastCtrl', forecastCtrl)
-  .service('forecastService', forecastService);
+  .service('forecastService', forecastService)
+  .config(function($mdThemingProvider) {
+    'ngInject';
+    $mdThemingProvider.theme('default')
+      .primaryPalette('grey')
+      .accentPalette('blue-grey')
+      .dark();
+  });

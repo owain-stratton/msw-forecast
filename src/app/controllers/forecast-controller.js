@@ -17,17 +17,19 @@ export default class forecastCtrl {
         id: '62'
       }
     ];
-
+    this.currentSpot = this.spots[2];
     this.forecastService = forecastService;
+    this.fetchForecast(this.spots[2].id);
 
   }
 
   fetchForecast(id) {
-    console.log(id);
     return this.forecastService.getForecast(id)
       .then(forecast => {
         console.log(forecast.data);
         this.forecast = forecast.data[0];
+
+        this.swell = forecast.data[0].swell;
       })
       .catch(err => {
         console.error(err.message);

@@ -23,19 +23,25 @@
 </head>
 <body ng-cloak ng-controller="forecastCtrl as ctrl" layout="column">
 
-	<md-toolbar layout-align="center center">
-		<h1>Longboard Spots Surf Forecast</h1>
+	<md-toolbar class="md-hue-2 md-whiteframe-8dp" layout-align="center center">
+		<h1>{{ctrl.currentSpot.name}}</h1>
 	</md-toolbar>
 
-	<div class="container" layout="row" flex>
-		<md-sidenav class="sidenav md-whiteframe-4dp" md-is-locked-open="$mdMedia('min-width: 333px')">
+	<div class="container" layout-xs="column" layout-align="center center">
+		<!-- <md-sidenav class="sidenav md-whiteframe-8dp" md-is-locked-open="$mdMedia('gt-sm')">
 			<md-list-item ng-repeat="spot in ctrl.spots">
 				<md-button ng-click="ctrl.fetchForecast(spot.id)">
 					{{spot.name}}
 				</md-button>
 			</md-list-item>
-		</md-sidenav>
-		<md-content class="content" flex>Content</md-content>
+		</md-sidenav> -->
+		<div layout="column" layout-align="center center" flex>
+			<h2 class="md-display-3">{{ctrl.swell.minBreakingHeight}}-{{ctrl.swell.maxBreakingHeight}}{{ctrl.swell.unit}}</h2>
+			<h3 class="md-display-1">Star Rating: </h3>
+		</div>
+		<div flex>
+			<h3>{{ctrl.swell.components.combined.height}}{{ctrl.swell.unit}} {{ctrl.swell.components.combined.compassDirection}} @ {{ctrl.swell.components.combined.period}} SEC</h3>
+		</div>
 	</div>
 
 	<script src="libs/vendor.bundle.js"></script>
