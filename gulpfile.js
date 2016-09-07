@@ -20,7 +20,8 @@ var src = {
     all: 'src/styles/*.scss',
     main: 'src/styles/app.scss',
     material: 'node_modules/angular-material/angular-material.css'
-  }
+  },
+  icons: 'node_modules/material-design-icons/sprites/svg-sprite/*'
 };
 
 var build = 'build/';
@@ -30,7 +31,8 @@ var out = {
     file: 'app.min.js',
     folder: build + 'scripts/'
   },
-  styles: build + 'styles/'
+  styles: build + 'styles/',
+  icons: build + 'icons/'
 };
 
 gulp.task('html', function() {
@@ -100,6 +102,12 @@ gulp.task('copyMaterialCSS', function() {
     .pipe(plugins.connect.reload());
 });
 
+gulp.task('copyMaterialIcons', function() {
+  return gulp.src(src.icons)
+    .pipe(gulp.dest(out.icons))
+    .pipe(plugins.connect.reload());
+});
+
 gulp.task('serve', ['build', 'watch'], function() {
   plugins.connect.server({
     root: build,
@@ -116,5 +124,5 @@ gulp.task('watch', function() {
   gulp.watch(src.styles.all, ['compileSass']);
 });
 
-gulp.task('build', ['scripts', 'html', 'vendors', 'compileSass', 'copyMaterialCSS']);
+gulp.task('build', ['scripts', 'html', 'vendors', 'compileSass', 'copyMaterialCSS', 'copyMaterialIcons']);
 gulp.task('default', ['serve']);

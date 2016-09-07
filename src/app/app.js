@@ -7,10 +7,18 @@ import forecastService from './services/forecast-services.js';
 angular.module('mswApp', [ ngMaterial ])
   .controller('forecastCtrl', forecastCtrl)
   .service('forecastService', forecastService)
-  .config(function($mdThemingProvider) {
+  .config(($mdThemingProvider, $mdIconProvider) => {
     'ngInject';
     $mdThemingProvider.theme('default')
-      .primaryPalette('grey')
-      .accentPalette('blue-grey')
-      .dark();
+      .primaryPalette('grey', {
+        'default': '500',
+        'hue-1': '100',
+        'hue-2': '300',
+        'hue-3': 'A100'
+      })
+      .accentPalette('blue-grey');
+
+    $mdIconProvider
+      .iconSet('toggle', './icons/svg-sprite-toggle.svg', 24)
+      .iconSet('navigation', './icons/svg-sprite-navigation.svg', 24);
   });

@@ -4,7 +4,7 @@
 	<title>MSW | Surf Forecast App</title>
 
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<meta name="description" content="Check out the surf forecast coming form the MagicSeaweed API" />
 	<meta name="author" content="Owain Stratton" />
@@ -23,25 +23,37 @@
 </head>
 <body ng-cloak ng-controller="forecastCtrl as ctrl" layout="column">
 
-	<md-toolbar class="md-hue-2 md-whiteframe-8dp" layout-align="center center">
-		<h1>{{ctrl.currentSpot.name}}</h1>
+	<md-toolbar class="md-primary md-hue-2 md-whiteframe-2dp" layout="row" layout-padding>
+		<div class="md-display-1">{{ctrl.currentSpot[1].name}}</div>
+		<span flex></span>
+		<div layout="column" layout-align="center end">
+			<div class="md-title">{{ctrl.time}}</div>
+			<div class="md-subhead">{{ctrl.date}}</div>
+		</div>
 	</md-toolbar>
 
-	<div class="container" layout-xs="column" layout-align="center center">
-		<!-- <md-sidenav class="sidenav md-whiteframe-8dp" md-is-locked-open="$mdMedia('gt-sm')">
-			<md-list-item ng-repeat="spot in ctrl.spots">
-				<md-button ng-click="ctrl.fetchForecast(spot.id)">
-					{{spot.name}}
-				</md-button>
-			</md-list-item>
-		</md-sidenav> -->
-		<div layout="column" layout-align="center center" flex>
-			<h2 class="md-display-3">{{ctrl.swell.minBreakingHeight}}-{{ctrl.swell.maxBreakingHeight}}{{ctrl.swell.unit}}</h2>
+	<div class="container" layout="row" layout-align="center center" flex>
+
+		<div hide show-gt-sm flex="10">
+			<md-button class="md-fab md-primary md-hue-2 md-no-focus" ng-click="ctrl.prevForecast()">
+				<md-icon md-svg-icon="navigation:ic_arrow_back_24px" aria-label="back arrow"></md-icon>
+			</md-button>
+		</div>
+
+		<div md-swipe-right="ctrl.nextForecast()" md-swipe-left="ctrl.prevForecast()" class="content forecast" flex="80">
+			<h2 class="md-display-3">{{ctrl.swell.minBreakingHeight}} - {{ctrl.swell.maxBreakingHeight}}{{ctrl.swell.unit}}</h2>
 			<h3 class="md-display-1">Star Rating: </h3>
+			<div>
+				<h3>{{ctrl.swell.components.combined.height}}{{ctrl.swell.unit}} {{ctrl.swell.components.combined.compassDirection}} @ {{ctrl.swell.components.combined.period}} SEC</h3>
+			</div>
 		</div>
-		<div flex>
-			<h3>{{ctrl.swell.components.combined.height}}{{ctrl.swell.unit}} {{ctrl.swell.components.combined.compassDirection}} @ {{ctrl.swell.components.combined.period}} SEC</h3>
+
+		<div hide show-gt-sm flex>
+			<md-button class="md-fab md-primary md-hue-2" ng-click="ctrl.nextForecast()">
+				<md-icon md-svg-icon="navigation:ic_arrow_forward_24px" aria-label="next arrow"></md-icon>
+			</md-button>
 		</div>
+
 	</div>
 
 	<script src="libs/vendor.bundle.js"></script>
