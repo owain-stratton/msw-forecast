@@ -16,6 +16,10 @@ $ cd <cloned-repo>
 $ npm install
 -----
 
+# get a developer API key from magicseaweed here
+http://magicseaweed.com/developer/api
+# place your API Key in src/app/services/forecast-services.js
+
 # run build script and setup server
 $ gulp
 ```

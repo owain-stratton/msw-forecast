@@ -6,7 +6,9 @@ export default class forecastService {
   }
 
   getForecast(spotID) {
-    return this.$http.jsonp('http://magicseaweed.com/api/LPp8WbZceQ3ER64f90P1Au52I5IFo807/forecast/?spot_id=' + spotID + '&units=eu&callback=JSON_CALLBACK');
+    const apikey = '';// YOUR API KEY
+    const url = `http://magicseaweed.com/api/${apikey}/forecast/?spot_id=${spotID}&units=eu&callback=JSON_CALLBACK`;
+    return this.$http.jsonp(url);
   }
 
 }
